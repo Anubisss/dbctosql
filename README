@@ -24,6 +24,8 @@ Supported DBC files:
 
 Supported compilers:
     MSVS 2005, 8.0
-    
+    gcc 4.2.4, GNU Make 3.81
+
 Tested in:
     MS Win XP 32bit, SP3, x86 -  MSVS 2005, 8.0
+    Linux: Ubuntu Server, i686 - gcc 4.2.4, GNU Make 3.81
