@@ -215,6 +215,14 @@
 					RelativePath="..\..\src\common\common.h"
 					>
 				</File>
+				<File
+					RelativePath="..\..\src\common\progressbar.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\common\progressbar.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>

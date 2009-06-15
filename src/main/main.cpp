@@ -22,10 +22,11 @@
 #include "common/common.h"
 #include "dbc/dbc.h"
 #include "structs/spell.h"
+#include "common/progressbar.h"
 
 #define SQL_INSERTS_PER_QUERY   300
 
-char const *DBCTOSQL_VER = "0.1";
+char const *DBCTOSQL_VER = "0.2";
 char const *DBCTOSQL_WEB = "http://code.google.com/p/dbctosql/";
 
 DBCFileLoader DBCSpell;
@@ -123,6 +124,8 @@ void dump_sql()
 
     std::cout << SPELL_DBC << " - Dumping data...\n";
 
+    Bar Progress(DBCSpell.getNumRows());
+
     char tstr[2000];
 
     for(uint32 j = 0; j < DBCSpell.getNumRows(); j++)
@@ -181,9 +184,11 @@ void dump_sql()
             fprintf(fsql, ");\n");
         else
             fprintf(fsql, ")\n");
+
+        Progress.Step();
     }
 
-    std::cout << SPELL_DBC << " - DONE\n\n";
+    std::cout << std::endl << SPELL_DBC << " - DONE\n\n";
 
     fprintf(fsql, "\n");
     fprintf(fsql, "-- EOF\n");
