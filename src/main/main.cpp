@@ -18,6 +18,7 @@
  */
 
 #include <iostream>
+#include <cstring>
 
 #include "common/common.h"
 #include "dbc/dbc.h"

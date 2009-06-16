@@ -21,8 +21,7 @@
 #define __DBC_H__
 
 #include <cassert>
-#include <string>
-
+#include <cstring>
 #include "common/common.h"
 
 #define WDBC_HEADER     0x43424457
