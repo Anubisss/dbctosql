@@ -26,7 +26,7 @@
 
 #define SQL_INSERTS_PER_QUERY   300
 
-char const *DBCTOSQL_VER = "0.2";
+char const *DBCTOSQL_VER = "0.3";
 char const *DBCTOSQL_WEB = "http://code.google.com/p/dbctosql/";
 
 DBCFileLoader DBCSpell;

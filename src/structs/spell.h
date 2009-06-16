@@ -24,12 +24,12 @@ char const *SPELL_DBC   = "Spell.dbc";
 char const *SPELL_SQL   = "spell_dbc.sql";
 char const *SPELL_TABLE = "dbc_spell";
 
-#define SPELL_DBC_CLIENT_BUILD  9551 // 3.0.9
+#define SPELL_DBC_CLIENT_BUILD  9947 // 3.1.3
 
-#define SPELL_DBC_COLUMN_NUMS   231
-#define SPELL_DBC_ROWS_NUMS     42163
+#define SPELL_DBC_COLUMN_NUMS   232
+#define SPELL_DBC_ROWS_NUMS     44673
 
-// Spell.dbc struct: TrinityCore2 r3917
+// Spell.dbc struct: TrinityCore2 r4042
 char const *sql_translation_table[SPELL_DBC_COLUMN_NUMS][2] =
 {
     {"uint32",  "id"},                          // 0 - Id
@@ -263,6 +263,7 @@ char const *sql_translation_table[SPELL_DBC_COLUMN_NUMS][2] =
     {"uint32",  "228"},                         // SchoolMask
     {"uint32",  "229"},                         // runeCostID
     {"uint32",  "230"},                         // spellMissileID
+    {"uint32",  "231"},                         // PowerDisplayId
 };
 
 char const *SPELL_TABLE_INDEX = sql_translation_table[0][1];
