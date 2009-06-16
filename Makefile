@@ -18,7 +18,7 @@
 #
 
 CC = g++
-CXXFLAGS = -c -Wall
+CXXFLAGS = -c
 
 OUT_FILE = dbctosql
 
