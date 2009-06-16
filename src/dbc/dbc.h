@@ -59,12 +59,6 @@ class DBCFileLoader
                 assert(stringOffset < file.stringSize);
                 return reinterpret_cast<char*>(file.stringTable + stringOffset);
             }
-            /*Record& operator=(Record &src)
-            {
-                this->file = src.file;
-                this->offset = src.offset;
-                return *this;
-            }*/
 
         private:
             Record(DBCFileLoader &file, unsigned char *offset): offset(offset), file(file) {}
@@ -74,9 +68,7 @@ class DBCFileLoader
         friend class DBCFileLoader;
     };
 
-    // Get record by id
     Record getRecord(size_t id);
-
     uint32 getNumRows() const { return recordCount; }
     uint32 getNumFields() const { return fieldCount; }
 

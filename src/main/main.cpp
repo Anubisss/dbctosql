@@ -27,9 +27,6 @@
 
 #define SQL_INSERTS_PER_QUERY   300
 
-char const *DBCTOSQL_VER = "0.3";
-char const *DBCTOSQL_WEB = "http://code.google.com/p/dbctosql/";
-
 DBCFileLoader DBCSpell;
 
 bool check_dbc();
@@ -37,7 +34,7 @@ void dump_sql();
 
 int main()
 {
-    std::cout << "\n*****************************************************************************\n";
+    std::cout << "*****************************************************************************\n";
     std::cout << "DBCtoSQL v" << DBCTOSQL_VER << "\n<" << DBCTOSQL_WEB <<">\n";
     std::cout << "*****************************************************************************\n\n\n";
 
@@ -54,8 +51,11 @@ int main()
         std::cout << "Ready. DBCs converted to SQLs.\n";
     }
 
-    std::cout << "\n\nPlease press Enter to exit...";
-    getchar();
+    #ifdef WIN32
+        std::cout << "\n\nPlease press Enter to exit...";
+        getchar();
+    #endif
+
     return 0;
 }
 
@@ -63,7 +63,7 @@ bool check_dbc()
 {
     if(!DBCSpell.getNumFields())
     {
-        std::cout << "ERROR: Can not open file: " << SPELL_DBC;
+        std::cout << "ERROR: Can not open file: " << SPELL_DBC << std::endl;
         return false;
     }
     else
@@ -72,12 +72,12 @@ bool check_dbc()
 
     if(DBCSpell.getNumFields() != SPELL_DBC_COLUMN_NUMS)
     {
-        std::cout << SPELL_DBC << " - ERROR: Column numbers do not match with the supported DBC format.";
+        std::cout << SPELL_DBC << " - ERROR: Column numbers do not match with the supported DBC format." << std::endl;
         return false;
     }
     if(DBCSpell.getNumRows() != SPELL_DBC_ROWS_NUMS)
     {
-        std::cout << SPELL_DBC << " - ERROR: Rows numbers do not match with the supported DBC format.";
+        std::cout << SPELL_DBC << " - ERROR: Rows numbers do not match with the supported DBC format." << std::endl;
         return false;
     }
     std::cout << SPELL_DBC << " - DBC format: OK." << "\n\n";

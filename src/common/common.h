@@ -20,6 +20,9 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
+char static const *DBCTOSQL_VER = "0.3";
+char static const *DBCTOSQL_WEB = "http://code.google.com/p/dbctosql/";
+
 typedef char int8;
 typedef int int16;
 typedef long int32;

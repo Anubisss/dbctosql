@@ -17,13 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <cstdio>
 #include "progressbar.h"
 
-#include <cstdio>
-
 char const *Bar::empty = " ";
-char const *Bar::full  = "\x3D"; // win
-// char const *Bar::full  = "*"; // *nix
+#ifdef WIN32
+    char const *Bar::full  = "\x3D";
+#else
+    char const *Bar::full  = "*";
+#endif
 
 Bar::~Bar()
 {
@@ -38,14 +40,20 @@ Bar::Bar(uint32 row_count)
     indic_len = 50;
     num_rec = row_count;
 
-    printf("\x3D"); // win
-    // printf("["); // *nix
+    #ifdef WIN32
+        printf("\x3D");
+    #else
+        printf("[");
+    #endif
 
     for(uint8 i = 0; i < indic_len; i++)
         printf(empty);
 
-    printf("\x3D 0%%\r\x3D"); // win
-    // printf("] 0%%\r["); // *nix
+    #ifdef WIN32
+        printf("\x3D 0%%\r\x3D");
+    #else
+        printf("] 0%%\r[");
+    #endif
 
     fflush(stdout);
 }
@@ -63,8 +71,11 @@ void Bar::Step()
 
     if(n != rec_pos)
     {
-        printf("\r\x3D"); // win
-        // printf("\r["); // *nix
+        #ifdef WIN32
+            printf("\r\x3D");
+        #else
+            printf("\r[");
+        #endif
 
         for(i = 0; i < n; i++)
             printf(full);
@@ -74,8 +85,11 @@ void Bar::Step()
 
         float percent = (((float)n / (float)indic_len) * 100);
 
-        printf("\x3D %i%%  \r\x3D", (uint16)percent); // win
-        // printf("] %i%%  \r[", (uint16)percent); // *nix
+        #ifdef WIN32
+            printf("\x3D %i%%  \r\x3D", (uint16)percent);
+        #else
+            printf("] %i%%  \r[", (uint16)percent);
+        #endif
 
         fflush(stdout);
 

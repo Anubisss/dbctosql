@@ -29,9 +29,9 @@ DBCFileLoader::DBCFileLoader()
 DBCFileLoader::~DBCFileLoader()
 {
     if(data)
-        delete [] data;
-    if(stringTable)
-        delete [] stringTable;
+       delete [] data;
+    /*if(stringTable) TODO: neeed some check, cause segfault
+        delete [] stringTable;*/
 }
 
 bool DBCFileLoader::Load(char const *filename)
@@ -60,32 +60,18 @@ bool DBCFileLoader::Load(char const *filename)
     if(fread(&stringSize, 4, 1, pf) != 1) // String size
         return false;
 
-#ifdef USING_BIG_ENDIAN
-    recordCount = swap32(recordCount);
-    fieldCount = swap32(fieldCount);
-    recordSize = swap32(recordSize);
-    stringSize = swap32(stringSize);
-#endif
-
     data = new unsigned char[recordSize * recordCount + stringSize];
     stringTable = data + recordSize * recordCount;
 
     if(!data || !stringTable)
         return false;
 
-    //fread(data, recordSize * recordCount, 1, pf);
     if(fread(data, recordSize * recordCount + stringSize , 1, pf) != 1)
         return false;
 
     if(fread(stringTable, stringSize, 1, pf) != 1)
         return false;
 
-    /* swap all the rows */
-#ifdef USING_BIG_ENDIAN
-    uint32 *tbl = (uint32*)data;
-    for(uint32 i = 0; i < (fieldCount * recordCount); i++)
-    tbl[i] = swap32((uint32)tbl[i]);
-#endif
     fclose(pf);
     return true;
 }
