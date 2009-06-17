@@ -26,12 +26,10 @@ char static const *DBCTOSQL_WEB = "http://code.google.com/p/dbctosql/";
 typedef char int8;
 typedef int int16;
 typedef long int32;
-typedef long long int64;
 
 typedef unsigned char uint8;
 typedef unsigned int uint16;
 typedef unsigned long uint32;
-typedef unsigned long long uint64;
 
 class flag96
 {
