@@ -150,13 +150,13 @@ void dump_sql()
         for(uint16 i = 0; i < SPELL_DBC_COLUMN_NUMS; i++)
         {
             if(sql_translation_table[i][0] == "uint32")
-                fprintf(fsql, "%u", DBCSpell.getRecord(j).getUInt32(i));
+                fprintf(fsql, "%lu", DBCSpell.getRecord(j).getUInt32(i));
             else if(sql_translation_table[i][0] == "int32")
-                fprintf(fsql, "%d", DBCSpell.getRecord(j).getInt32(i));
+                fprintf(fsql, "%ld", DBCSpell.getRecord(j).getInt32(i));
             else if(sql_translation_table[i][0] == "float")
                 fprintf(fsql, "%f", DBCSpell.getRecord(j).getFloat(i));
             else if(sql_translation_table[i][0] == "flag96")
-                fprintf(fsql, "%u", DBCSpell.getRecord(j).getUInt32(i));
+                fprintf(fsql, "%lu", DBCSpell.getRecord(j).getUInt32(i));
             else if(sql_translation_table[i][0] == "char*")
             {
                 const char *dstr = DBCSpell.getRecord(j).getString(i);

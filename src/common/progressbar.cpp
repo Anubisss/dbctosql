@@ -47,7 +47,7 @@ Bar::Bar(uint32 row_count)
     #endif
 
     for(uint8 i = 0; i < indic_len; i++)
-        printf(empty);
+        printf("%s", empty);
 
     #ifdef WIN32
         printf("\x3D 0%%\r\x3D");
@@ -78,10 +78,10 @@ void Bar::Step()
         #endif
 
         for(i = 0; i < n; i++)
-            printf(full);
+            printf("%s", full);
 
         for(; i < indic_len; i++)
-            printf(empty);
+            printf("%s", empty);
 
         float percent = (((float)n / (float)indic_len) * 100);
 
