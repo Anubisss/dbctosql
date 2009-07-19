@@ -100,15 +100,15 @@ void dump_sql()
 
     for(uint16 i = 0; i < SPELL_DBC_COLUMN_NUMS; i++)
     {
-        if(sql_translation_table[i][0] == "uint32")
+        if(!strcmp(sql_translation_table[i][0], "uint32"))
             fprintf(fsql, "    `%s` INT (11) UNSIGNED DEFAULT '0' NOT NULL,\n", sql_translation_table[i][1]);
-        else if(sql_translation_table[i][0] == "int32")
+        else if(!strcmp(sql_translation_table[i][0], "int32"))
             fprintf(fsql, "    `%s` INT (11) DEFAULT '0' NOT NULL,\n", sql_translation_table[i][1]);
-        else if(sql_translation_table[i][0] == "float")
+        else if(!strcmp(sql_translation_table[i][0], "float"))
             fprintf(fsql, "    `%s` FLOAT DEFAULT '0' NOT NULL,\n", sql_translation_table[i][1]);
-        else if(sql_translation_table[i][0] == "flag96")
+        else if(!strcmp(sql_translation_table[i][0], "flag96"))
             fprintf(fsql, "    `%s` INT (11) UNSIGNED DEFAULT '0' NOT NULL,\n", sql_translation_table[i][1]);
-        else if(sql_translation_table[i][0] == "char*")
+        else if(!strcmp(sql_translation_table[i][0], "char*"))
             fprintf(fsql, "    `%s` TEXT,\n", sql_translation_table[i][1]);
         else
             fprintf(fsql, "    ERROR: unknown column type: %s in column: %s\n", sql_translation_table[i][0], sql_translation_table[i][1]);
@@ -149,15 +149,15 @@ void dump_sql()
 
         for(uint16 i = 0; i < SPELL_DBC_COLUMN_NUMS; i++)
         {
-            if(sql_translation_table[i][0] == "uint32")
+            if(!strcmp(sql_translation_table[i][0], "uint32"))
                 fprintf(fsql, "%lu", DBCSpell.getRecord(j).getUInt32(i));
-            else if(sql_translation_table[i][0] == "int32")
+            else if(!strcmp(sql_translation_table[i][0], "int32"))
                 fprintf(fsql, "%ld", DBCSpell.getRecord(j).getInt32(i));
-            else if(sql_translation_table[i][0] == "float")
+            else if(!strcmp(sql_translation_table[i][0], "float"))
                 fprintf(fsql, "%f", DBCSpell.getRecord(j).getFloat(i));
-            else if(sql_translation_table[i][0] == "flag96")
+            else if(!strcmp(sql_translation_table[i][0], "flag96"))
                 fprintf(fsql, "%lu", DBCSpell.getRecord(j).getUInt32(i));
-            else if(sql_translation_table[i][0] == "char*")
+            else if(!strcmp(sql_translation_table[i][0], "char*"))
             {
                 const char *dstr = DBCSpell.getRecord(j).getString(i);
                 uint16 otherindex = 0;
