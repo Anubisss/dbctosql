@@ -33,7 +33,7 @@ dbc.o: $(SRC)/dbc/dbc.cpp $(SRC)/dbc/dbc.h
 		$(CC) $(CXXFLAGS) $(INCLUDES) $(SRC)/dbc/dbc.cpp
 progressbar.o: $(SRC)/common/progressbar.cpp $(SRC)/common/progressbar.h $(SRC)/common/common.h
 		$(CC) $(CXXFLAGS) $(INCLUDES) $(SRC)/common/progressbar.cpp
-main.o: $(SRC)/main/main.cpp $(SRC)/common/common.h $(SRC)/dbc/dbc.h $(SRC)/structs/spell.h $(SRC)/common/progressbar.h
+main.o: $(SRC)/main/main.cpp $(SRC)/common/common.h $(SRC)/dbc/dbc.h $(SRC)/structs/spell.h $(SRC)/structs/achievement.h $(SRC)/structs/achievement_category.h $(SRC)/structs/achievement_criteria.h $(SRC)/common/progressbar.h
 		$(CC) $(CXXFLAGS) $(INCLUDES) $(SRC)/main/main.cpp
 
 clean:

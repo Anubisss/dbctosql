@@ -29,10 +29,10 @@ char const *SPELL_TABLE = "dbc_spell";
 #define SPELL_DBC_COLUMN_NUMS   232
 #define SPELL_DBC_ROWS_NUMS     44673
 
-// Spell.dbc struct: TrinityCore2 r4042
-char const *sql_translation_table[SPELL_DBC_COLUMN_NUMS][2] =
+// Spell.dbc struct: TrinityCore2 r4907
+char const *spell_translation[SPELL_DBC_COLUMN_NUMS][2] =
 {
-    {"uint32",  "id"},                          // 0 - Id
+    {"uint32",  "id"},                          // Id
     {"uint32",  "1"},                           // Category
     {"uint32",  "2"},                           // Dispel
     {"uint32",  "3"},                           // Mechanic
@@ -266,6 +266,6 @@ char const *sql_translation_table[SPELL_DBC_COLUMN_NUMS][2] =
     {"uint32",  "231"},                         // PowerDisplayId
 };
 
-char const *SPELL_TABLE_INDEX = sql_translation_table[0][1];
+char const *SPELL_TABLE_INDEX = spell_translation[0][1];
 
 #endif

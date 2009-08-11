@@ -19,6 +19,7 @@
 
 #include <cstdio>
 #include "dbc/dbc.h"
+#include "stdlib.h"
 
 DBCFileLoader::DBCFileLoader()
 {
@@ -30,8 +31,8 @@ DBCFileLoader::~DBCFileLoader()
 {
     if(data)
        delete [] data;
-    /*if(stringTable) TODO: neeed some check, cause segfault
-        delete [] stringTable;*/
+    if(stringTable)
+        free(stringTable);
 }
 
 bool DBCFileLoader::Load(char const *filename)
@@ -59,7 +60,7 @@ bool DBCFileLoader::Load(char const *filename)
 
     if(fread(&stringSize, 4, 1, pf) != 1) // String size
         return false;
-
+    
     data = new unsigned char[recordSize * recordCount + stringSize];
     stringTable = data + recordSize * recordCount;
 
@@ -69,8 +70,7 @@ bool DBCFileLoader::Load(char const *filename)
     if(fread(data, recordSize * recordCount + stringSize , 1, pf) != 1)
         return false;
 
-    if(fread(stringTable, stringSize, 1, pf) != 1)
-        return false;
+    fread(stringTable, stringSize, 1, pf);
 
     fclose(pf);
     return true;

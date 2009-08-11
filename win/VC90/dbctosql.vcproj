@@ -195,6 +195,18 @@
 				Name="dbc-structs"
 				>
 				<File
+					RelativePath="..\..\src\structs\achievement.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\structs\achievement_category.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\src\structs\achievement_criteria.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\src\structs\spell.h"
 					>
 				</File>
