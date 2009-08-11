@@ -19,7 +19,6 @@
 
 #include <cstdio>
 #include "dbc/dbc.h"
-#include "stdlib.h"
 
 DBCFileLoader::DBCFileLoader()
 {
@@ -31,8 +30,6 @@ DBCFileLoader::~DBCFileLoader()
 {
     if(data)
        delete [] data;
-    if(stringTable)
-        free(stringTable);
 }
 
 bool DBCFileLoader::Load(char const *filename)
