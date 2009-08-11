@@ -60,7 +60,7 @@ bool DBCFileLoader::Load(char const *filename)
 
     if(fread(&stringSize, 4, 1, pf) != 1) // String size
         return false;
-    
+
     data = new unsigned char[recordSize * recordCount + stringSize];
     stringTable = data + recordSize * recordCount;
 

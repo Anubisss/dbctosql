@@ -406,7 +406,7 @@ void dump_sql()
     fflush(fAchievementSql);
     fclose(fAchievementSql);
 
-    std::cout << ACHIEVEMENT_DBC << " - Closed\n\n";  
+    std::cout << ACHIEVEMENT_DBC << " - Closed\n\n";
 
     /********** END: Achievement.dbc **********/
 
