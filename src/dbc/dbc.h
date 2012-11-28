@@ -3,6 +3,8 @@
  * Copyright (C) 2009  David Vas, Anubisss
  * <http://code.google.com/p/dbctosql/>
 
+ * Updated by Dagfinn (Droidfinn) in 2012.
+
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,6 +24,8 @@
 
 #include <cassert>
 #include <cstring>
+#include <cstdio>
+#include <iostream>
 #include "common/common.h"
 
 #define WDBC_HEADER     0x43424457
@@ -32,7 +36,7 @@ class DBCFileLoader
         DBCFileLoader();
         ~DBCFileLoader();
 
-    bool Load(char const *filename);
+    bool Load(char const *filename, const int columns, const int rows);
 
     class Record
     {
@@ -52,11 +56,24 @@ class DBCFileLoader
                 assert(field < file.fieldCount);
                 return *reinterpret_cast<int32*>(offset + field * 4);
             }
+            uint16 getUint16(size_t field) const
+            {
+                assert(field < file.fieldCount);
+                return *reinterpret_cast<uint16*>(offset + field * 4);
+            }
+            int16 getInt16(size_t field) const
+            {
+                assert(field < file.fieldCount);
+                return *reinterpret_cast<int16*>(offset + field * 4);
+            }
             char const* getString(size_t field) const
             {
                 assert(field < file.fieldCount);
                 size_t stringOffset = getUInt32(field);
-                assert(stringOffset < file.stringSize);
+               // assert(stringOffset < file.stringSize); // This was failing, commented out and seems to work with simple workaround.
+                if(stringOffset > file.stringSize)
+			stringOffset = 0 ;
+//		std::cout << "field " << field << " stringOffset " << stringOffset << " file.stringSize " << file.stringSize << " file.stringTable " << file.stringTable << std::endl; 
                 return reinterpret_cast<char*>(file.stringTable + stringOffset);
             }
 

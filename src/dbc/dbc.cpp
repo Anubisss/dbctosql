@@ -3,6 +3,8 @@
  * Copyright (C) 2009  David Vas, Anubisss
  * <http://code.google.com/p/dbctosql/>
 
+ * Updated by Dagfinn (Droidfinn) in 2012.
+
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -24,6 +26,10 @@ DBCFileLoader::DBCFileLoader()
 {
     data = NULL;
     stringTable = NULL;
+    recordSize = 0;
+    recordCount = 0;
+    fieldCount = 0;
+    stringSize = 0;
 }
 
 DBCFileLoader::~DBCFileLoader()
@@ -32,31 +38,59 @@ DBCFileLoader::~DBCFileLoader()
        delete [] data;
 }
 
-bool DBCFileLoader::Load(char const *filename)
+bool DBCFileLoader::Load(char const *filename, const int columns, const int rows)
 {
-    FILE *pf = fopen(filename, "rb");
-    if(!pf)
-        return false;
+    uint32 header=0;
 
-    uint32 header;
+    std::cout << "Opening file: " << filename << std::endl;
+
+    FILE *pf = fopen(filename, "r");
+    if(!pf)
+    {
+	std::cout << "Unable to open file: " << filename << std::endl;
+        return false;
+    }
 
     if(fread(&header, 4, 1, pf) != 1)
         return false;
 
     if(header != WDBC_HEADER)
+    {
+	std::cout << "File does not contain a DBC header" << std::endl;
         return false;
+    }
 
     if(fread(&recordCount, 4, 1, pf) != 1) // Number of records
         return false;
 
+    if(recordCount == rows)
+        std::cout << "Number of rows in file: " << recordCount << std::endl;
+    else
+    {
+         std::cout << "Number of rows in file: " << recordCount << " does not match definition: " << rows << std::endl;
+         return false;
+    }
+
     if(fread(&fieldCount, 4, 1, pf) != 1) // Number of fields
         return false;
+
+    if(fieldCount == columns)
+        std::cout << "Number of columns in file: " << fieldCount << std::endl;
+    else
+    {
+         std::cout << "Number of columns in file: " << fieldCount << " does not match definition: " << columns << std::endl;
+         return false;
+    }
 
     if(fread(&recordSize, 4, 1, pf) != 1) // Size of a record
         return false;
 
+    std::cout << "Record size is: " << recordSize << std::endl;
+
     if(fread(&stringSize, 4, 1, pf) != 1) // String size
         return false;
+
+    std::cout << "String size is: " << stringSize << std::endl;
 
     data = new unsigned char[recordSize * recordCount + stringSize];
     stringTable = data + recordSize * recordCount;

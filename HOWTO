@@ -1,0 +1,23 @@
+**** Howto: Add support for a .dbc file ****
+Use for example trinity core source to figure out the definitions.
+DBCStructure.h file is a good place to look. 
+ 
+1. Create a .h file in src/struct folder (copy one of the excisting files)
+In your brand new .h file: 
+    a. Update all the char const lines in the file. 
+    b. Update all the defines in the file, you will get the columns and rows later.
+    c. Update the const std::string _definition line. 
+    d. From what ever source you have, create the table of definitions. In most cases a uint16 is really what you want, not a uint32. Check the .dbc with a hexeditor if you really want to be sure. Or just wait and see if something looks odd in the sql table later.
+    e. Names in the second column has to be unique.
+2. Open src/main/main.cpp in some awesome editor of your choice.
+In src/main/main.cpp:
+    a. Add .h file to the list of #includes.
+    b. Add a if statement in main(....) with !strcpy on the .dbc file name and the client version.
+    c. Add a wasRun=LoadCheckDump(....) function call with defines from your .h file.
+    d. Add the .dbc file to the list of supported dbc files further down in main(....)
+3. Open the README file and add the newly supported dbc file to the list here too.
+4. 'make' the project. Copy dbctosql to the folder with the dbc files. Run ./dbctosql, expect errors.
+    a. You will probably get a message about number of rows not matcing in the file. Update your .h file to match with what was found in the file. 
+    b. You might also get a message about missmatching number of colums. Make sure you have the correct number of defined columns in the _definition string array.
+
+Please contact one of the maintainers of the project if you create new definition files so that we can add it to the repository.

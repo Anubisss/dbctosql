@@ -19,21 +19,18 @@
 
 For more information about the program You can check: http://code.google.com/p/dbctosql/
 
-Supported DBC files:
-    Spell.dbc, client build: 9947
-    Achievement.dbc, client build: 9947
-    Achievement_Category.dbc, client build: 9947
-    Achievement_Criteria.dbc, client build: 9947
+Supported DBC files for client build 3.3.5a:
+    Spell.dbc
+    SpellItemEnchantment.dbc
+    DungeonEncounter.dbc
 
 Supported compilers:
-    MSVS 2005, 8.0
-    MSVS 2008, 9.0
-    gcc 4.2.4, GNU Make 3.81
+    MSVS 2005, 8.0 (not tested after rewrite)
+    MSVS 2008, 9.0 (not tested after rewrite)
+    gcc 4.6.1-9ubuntu3, GNU Make 3.81
 
 Tested in:
-    MS Win XP 32bit, SP3, x86 -  MSVS 2005, 8.0
-    MS Win XP 32bit, SP3, x86 -  MSVS 2008, 9.0
-    Linux: Ubuntu Server, i686 - gcc 4.2.4, GNU Make 3.81
+    Linux: Ubuntu 11.10, x86_64 - gcc 4.6.1-9ubuntu3, GNU Make 3.81
 
 DO NOT DO!
     THE DBC FILES OWNER IS BLIZZARD AND ITS A COPYRIGHTED DATA SO YOU SHOULD'NT CONVERT/MODIFY IT.
