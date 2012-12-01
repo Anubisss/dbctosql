@@ -244,9 +244,9 @@ const std::string spell_definition[SPELL_DBC_COLUMN_NUMS][2] =
     {"uint16", "StartRecoveryTime"},                            // 206      m_startRecoveryTime
     {"uint16", "MaxTargetLevel"},                               // 207      m_maxTargetLevel
     {"uint16", "SpellFamilyName"},                              // 208      m_spellClassSet
-    {"flag96", "SpellFamilyFlags"},                             // 209-211
-    {"flag96", "SpellFamilyFlags"},                             // 209-211
-    {"flag96", "SpellFamilyFlags"},                             // 209-211
+    {"flag96", "SpellFamilyFlags[1]"},                             // 209-211
+    {"flag96", "SpellFamilyFlags[2]"},                             // 209-211
+    {"flag96", "SpellFamilyFlags[3]"},                             // 209-211
     {"uint16", "MaxAffectedTargets"},                           // 212      m_maxTargets
     {"uint16", "DmgClass"},                                     // 213      m_defenseType
     {"uint16", "PreventionType"},                               // 214      m_preventionType
